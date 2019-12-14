@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import models
+from . import Medecin, Secretaire, Patient, Consultation, Medicament, ConsultationWizzard, Prescription

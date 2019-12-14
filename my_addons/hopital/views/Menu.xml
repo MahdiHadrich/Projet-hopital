@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="root_menu" name="Hopital"/>
+    <menuitem id="sub_menu_users" name="Users" parent="hopital.root_menu"/>
+    <menuitem id="sub_menu_records" name="Records" parent="hopital.root_menu"/>
+</odoo>

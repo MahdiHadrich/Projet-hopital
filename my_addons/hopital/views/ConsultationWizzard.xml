@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="consultation_wizzard_id">
+        <field name="name">wizzard.consultation_wizzard</field>
+        <field name="model">hopital.consultation_wizzard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="medecin_id"/>
+                    <field name="consultations_ids" />
+                </group>
+                <footer>
+                    <button name="add" type="object" string="Affecter" class="oe_highlight"/> o
+                    <button special="cancel" string="Annuler"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="hopital.consultation_wizzard_action"
+                    name="Attribuer des médicaments aux consultations"
+                    src_model="hopital.consultation"
+                    res_model="hopital.consultation_wizzard"
+                    view_mode="form"
+                    target="new"/>
+
+</odoo>

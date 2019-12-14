@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.actions.act_window" id="medecin_action">
+        <field name="name">Medecins</field>
+        <field name="res_model">hopital.medecin</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <record model="ir.ui.view" id="medecin_form_view">
+        <field name="name">Medecin Form</field>
+        <field name="model">hopital.medecin</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Informations personnelles">
+                        <field name="name" string="Nom" required="True"/>
+                        <field name="sex"/>
+                        <field name="birthdate"/>
+                    </group>
+                    <group string="Données de connexion">
+                        <field name="login"/>
+                        <field name="password" password="True" required="True"/>
+                    </group>
+                    <group string="Informations sur l'hôpital">
+                        <field name="break_duration"/>
+                        <field name="phd"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <menuitem id="sub_menu_medecin" name="Medecin" parent="hopital.sub_menu_users" action="hopital.medecin_action"/>
+</odoo>

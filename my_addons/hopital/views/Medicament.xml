@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.actions.act_window" id="medicine_action">
+        <field name="name">Medicament</field>
+        <field name="res_model">hospital.medicine</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <record model="ir.ui.view" id="medicine_form_view">
+        <field name="name">formulaire de medicament</field>
+        <field name="model">hospital.medicine</field>
+        <field name="arch" type="xml">
+            <form>
+                <group string="Details">
+                    <field name="name"/>
+                    <field name="branch"/>
+                    <field name="active_substance"/>
+                    <field name="price" widget="monetary"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+
+    <menuitem id="sub_menu_medicine" name="Medicament" parent="hospital.sub_menu_records" action="hospital.medicine_action"/>
+</odoo>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="consultation_form_view">
+        <field name="name">formulaire de consultation</field>
+        <field name="model">hopital.consultation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Impliqué">
+                        <field name="patient_id"/>
+                        <field name="medecin_id"/>
+                    </group>
+                    <group string="Dates">
+                        <field name="date" attrs="{'readonly':['|',('duration','=',False),('medecin_id','=',False)]}"/>
+                        <field name="next_date"/>
+                    </group>
+                </sheet>
+                <sheet>
+                    <group string="Détails de la consultation">
+                        <field name="duration"/>
+                        <field name="prescriptions_ids" domain="[('id','=',False)]"/>
+                        <field name="symptoms" />
+                        <field name="indications" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="consultation_tree_view">
+        <field name="name">tree consultation</field>
+        <field name="model">hopital.consultation</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="date &lt; now" decoration-warning="not next_date">
+                <field name="now" invisible="True"/>
+                <field name="patient_id"/>
+                <field name="medecin_id"/>
+                <field name="date"/>
+                <field name="next_date"/>
+                <field name="duration"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="consultation_calendar_view">
+        <field name="name">calendar consultation</field>
+        <field name="model">hopital.consultation</field>
+        <field name="arch" type="xml">
+            <calendar string="Doctor's consultations" date_start="date" date_stop="date_end" color="medecin_id">
+                <field name="patient_id"/>
+                <field name="medecin_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="consultation_gantt_view">
+        <field name="name">gantt consultation</field>
+        <field name="model">hopital.consultation</field>
+        <field name="arch" type="xml">
+            <gantt date_start="date" default_group_by="medecin"  date_stop="duration//60" />
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="consultation_action">
+        <field name="name">Consultations</field>
+        <field name="res_model">hopital.consultation</field>
+        <field name="view_mode">tree,form,calendar,gantt</field>
+    </record>
+
+
+    <menuitem id="sub_menu_consultation" name="Consultations" parent="hopital.sub_menu_records" action="hopital.consultation_action"/>
+</odoo>

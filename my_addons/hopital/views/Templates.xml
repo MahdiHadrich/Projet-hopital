@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="hopital.consultation_report_view">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="date">
+                            <span>
+                                Consultation de <strong><span t-esc="datetime.datetime.strptime(o.date,'%Y-%m-%d %H:%M:%S').strftime('%d/%m/%Y')"/></strong>
+                                a <strong><span t-esc="datetime.datetime.strptime(o.date,'%Y-%m-%d %H:%M:%S').strftime('%H:%M')"/></strong>
+                            </span>
+                        </div>
+                        <div class="definitions">
+                            <h2><span>Impliqué</span></h2>
+                            <p>
+                                <strong>Médecin responsable:</strong> <span t-esc="o.doctor_id.name"/><br/>
+                                <strong>Patient: </strong><span t-esc="o.patient_id.name"/>
+                            </p>
+                        </div>
+                        <div class="definitions">
+                            <h2><span>Symptômes</span></h2>
+                            <p t-esc="o.symptoms"/>
+                        </div>
+                        <div class="definitions">
+                            <h2><span>Indications</span></h2>
+                            <p t-esc="o.indications"/>
+                        </div>
+                        <div class="medicaments">
+                            <h2><span>Médicaments sur ordonnance</span></h2>
+                            <p>
+                                <dl>
+                                    <t t-foreach="o.prescriptions_ids" t-as="pr">
+                                        <dt>
+                                            <span t-esc="pr.medicament_id.name"/>.
+                                        </dt>
+                                        <dd>
+                                            ingest <strong><span t-esc="pr.quantity"/>g</strong>,
+                                            chaque <strong><span t-esc="pr.lapse" t-esc-options='{"widget":"float_time"}'/> hrs</strong>.
+                                            <t t-if="pr.comments">
+                                            <br/><strong>Commentaires additionnels</strong>
+                                            <p t-esc="pr.comments"/>
+                                            </t>
+                                        </dd>
+                                    </t>
+                                </dl>
+                            </p>
+                        </div>
+                        <t t-if="o.next_date">
+                            <div class="date" style="margin-top:1em">
+                                <span>
+                                    La prochaine consultation est attendue le <strong><span t-esc="datetime.datetime.strptime(o.next_date,'%Y-%m-%d').strftime('%Y/%m/%d')"/></strong>
+                                </span>
+                            </div>
+                        </t>
+
+                        <style>
+                            header{
+                                display: none !important;
+                            }
+                            .date{
+                                text-align: right;
+                                margin-bottom: 4em;
+                                font-size: 1.3em;
+                                font-weight: 300;
+                                color: #354;
+                                letter-spaceing: -1px;
+                            }
+                            h2>span{
+                                border-bottom: 4px solid #940101;
+                                padding-right: 3em;
+                            }
+                            h2{
+                                color: #5f5e97;
+                                font-weight: bold;
+                                padding-bottom: 12px;
+                                border-bottom: 4px solid #4f4e97;
+                            }
+                            dl{
+                                font-weight: 200;
+                                color: #234;
+                                font-size: 1.2em;
+                            }
+                            .definitions>p{
+                                font-size: 1.2em;
+                                font-weight: 200;
+                                color: #234;
+                            }
+                            .definitions{
+                                margin-bottom: 3em;
+                            }
+
+                        </style>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

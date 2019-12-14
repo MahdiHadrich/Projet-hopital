@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report id="hopital.consultation_report_action"
+        model="hopital.consultation"
+        string="Rapport de consultation"
+        file="hopital.consultation_report_action"
+        name="hopital.consultation_report_view"
+        report_type="qweb-pdf"/>
+
+</odoo>

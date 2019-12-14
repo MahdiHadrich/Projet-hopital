@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.actions.act_window" id="patient_action">
+        <field name="name">Patient</field>
+        <field name="res_model">hopital.patient</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.ui.view" id="patient_form_view">
+        <field name="name">patient form</field>
+        <field name="model">hopital.patient</field>
+        <field name="arch" type="xml">
+            <form>
+                <group string="Informations personnelles">
+                    <field name="name"/>
+                    <field name="sex"/>
+                    <field name="birthdate"/>
+
+                </group>
+                <group string="Informations sur l'hôpital">
+                    <field name="consults_id" widget="many2many_tags"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="sub_menu_patient" name="Patient" parent="hopital.sub_menu_records" action="hopital.patient_action"/>
+</odoo>

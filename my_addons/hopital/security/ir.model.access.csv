@@ -1,2 +1,12 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hopital_hopital,hopital.hopital,model_hopital_hopital,,1,0,0,0
+dg_consultation,medecin consultation,model_hopital_consultation,medecin_group,1,1,0,1
+dg_medecin,medecin medecin,model_hopital_medecin,medecin_group,1,0,0,0
+dg_patient,medecin patient,model_hopital_patient,medecin_group,1,0,0,0
+dg_medicament,medecin medicament,model_hopital_medicament,medecin_group,1,1,1,0
+dg_prescription,medecin medicament,model_hopital_prescription,medecin_group,1,1,1,1
+sc_consultation,medecin consultation,model_hopital_consultation,secretaire_group,1,1,1,1
+sc_medecin,medecin medecin,model_hopital_medecin,secretaire_group,1,1,1,1
+sc_patient,medecin patient,model_hopital_patient,secretaire_group,1,1,1,1
+sc_medicament,medecin medicament,model_hopital_medicament,secretaire_group,1,1,1,1
+sc_users,medecin medicament,base.model_res_users,secretaire_group,1,1,1,0
+sc_secretaire,secretaire to secretaire,model_hopital_secretaire,secretaire_group,1,1,1,0

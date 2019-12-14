@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="medecin_group" model="res.groups">
+        <field name="name">Hospital.medecin</field>
+    </record>
+    <record id="secretary_group" model="res.groups">
+        <field name="name">Hospital.secretary</field>
+    </record>
+
+    <record id="delete_own_consultations_only" model="ir.rule">
+        <field name="name">Seuls les prospects annulés peuvent être supprimés</field>
+        <field name="model_id" ref="model_hopital_consultation"/>
+        <field name="groups" eval="[(4, ref('hopital.medecin_group'))]"/>
+        <field name="perm_read" eval="0"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="1" />
+        <field name="domain_force">
+            [('medecin_id.user_id','=', user.id)]
+        </field>
+    </record>
+
+    <record id="delete_own_medicines_only" model="ir.rule">
+        <field name="name">Seuls les prospects annulés peuvent être supprimés</field>
+        <field name="model_id" ref="model_hopital_medicine"/>
+        <field name="groups" eval="[(4, ref('hopital.medecin_group'))]"/>
+        <field name="perm_read" eval="0"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="1" />
+        <field name="domain_force">
+            [('create_uid','=', user.id)]
+        </field>
+    </record>
+</odoo>

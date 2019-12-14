@@ -24,6 +24,17 @@
 
     # always loaded
     'data': [
+        'views/Menu.xml',
+        'views/Medecin.xml',
+        'views/Secretaire.xml',
+        'views/Patient.xml',
+        'views/ConsultationWizzard.xml',
+        'views/Consultation.xml',
+        'views/Medicament.xml',
+        'views/Prescription.xml',
+        'views/Templates.xml',
+        'views/Rapport.xml',
+        'security/security.xml',
         'security/ir.model.access.csv',
     ],
     # only loaded in demonstration mode
